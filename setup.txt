@@ -1,0 +1,41 @@
+To Setup Virtual Environment for python in a folder
+We will name the folder as "venv"
+
+Note - We do this thing so that we can install dependencies for this particular project in 
+the environment of this project, rather than installing dependencies for this project globally.
+
+Code 
+
+python3 -m venv .venv   {To Setup the virtual environment}
+source .venv/bin/activate   {To Activate the Virtual Environment}
+
+Note - After Creating the Virtual Environment and installing all the dependencies in the environment.
+We can create a .txt file which will have all the dependencies installed in this environment and as 
+we install more dependencies they will get added up in the file.
+
+*** To create the file, use command -> pip3 freeze nameOfFile.txt 
+
+Note - To Run our Flask application we need to setup a few environment variables.
+1. export FLASK_APP=application.py
+2. export FLASK_ENV=development
+This Setup we need to do again as after running one time these environment variables will go away.
+
+
+To Enter Data into Database (If we use SQLALchemy for Flask)
+
+Go inside Python commmand line in Terminal, by typing "Python3"
+
+from application import db  (To import database from our application)
+from application import Drink   (To import Drink class from our application)
+
+db.create_all() [It will create a table to store data]
+
+drink = Drink(name="Grape Soda", description="Tastes like grapes") 
+[We creating an object name drink. As, inside SQL Alchemy we store data as Model or Object]
+
+db.session.add(drink)   [This will add object drink to Database]
+db.session.commit()     [To add object to database]
+
+[To fetch drinks information from database]
+Drink.query.all()
+
